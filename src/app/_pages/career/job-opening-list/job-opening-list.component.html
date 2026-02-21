@@ -1,0 +1,410 @@
+<div class="row align-items-center justify-content-between">
+    <div class="col-auto">
+        <div class="page-header-name">Job Opening List</div>
+    </div>
+    <div class="col-auto text-end">
+        <div class="nav-header-action">
+            <div class="nav-head-item">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewJobModal"
+                    (click)="addNewJob()">
+                    <i class="icon-dc-plus btn-icon-left"></i> Add New Job
+                </button>
+            </div>
+            <div class="nav-head-item">
+                <button type="button" class="btn btn-light" data-bs-toggle="offcanvas"
+                    data-bs-target="#JobListFilter">
+                    <i class="icon-dc-filter btn-icon-left"></i> Filter
+                    <span *ngIf="isFilterApplied" class="badge bg-primary ms-1">{{ activeFilterCount }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card data-table table-card-rounded">
+            <div class="table-responsive scroll-light list-table-height-1">
+                <table class="table thead-fixed mb-0">
+                    <thead>
+                        <tr>
+                            <th class="first-fixed-col" width="60">Action</th>
+                            <th>Job Title</th>
+                            <th>Description</th>
+                            <th>Job Type</th>
+                            <th>Experience</th>
+                            <th>Status</th>
+                            <th>Location</th>
+                            <th>Skills</th>
+                            <th>Responsibilities</th>
+                            <th>Openings</th>
+                            <th>Created Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="loading">
+                            <td colspan="11" class="text-center py-5">
+                                <img src="assets/images/loader.gif" alt="Loading..." style="width: 80px; height: 80px;">
+                            </td>
+                        </tr>
+                        <tr *ngFor="let job of jobs" [hidden]="loading">
+                            <td class="first-fixed-col">
+                                <ul class="actions-wrap actions-style-1">
+                                    <li class="actions-item">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32"
+                                            data-bs-toggle="modal" data-bs-target="#ViewJobModal"
+                                            (click)="viewJob(job)">
+                                            <i class="icon-dc-eye"></i>
+                                        </button>
+                                    </li>
+                                    <li class="actions-item">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32"
+                                            data-bs-toggle="modal" data-bs-target="#AddNewJobModal"
+                                            (click)="editJob(job)">
+                                            <i class="icon-dc-edit"></i>
+                                        </button>
+                                    </li>
+                                    <li class="actions-item">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32"
+                                            data-bs-toggle="modal" data-bs-target="#DeleteJobModal"
+                                            (click)="deleteJob(job)">
+                                            <i class="icon-dc-delete"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>{{ job.title }}</td>
+                            <td>
+                                <div class="">
+                                    {{ truncateText(job.description, 50) }}
+                                </div>
+                            </td>
+                            <td>{{ job.jobType }}</td>
+                            <td>{{ job.experience }}</td>
+                            <td>
+                                <button type="button" 
+                                    [class]="job.isActive ? 'badge badge-green' : 'badge badge-red'">
+                                    {{ job.isActive ? 'Active' : 'Inactive' }}
+                                </button>
+                            </td>
+                            <td>{{ job.location }}</td>
+                            <td>{{ job.requiredSkills.slice(0, 2).join(', ') }}<span *ngIf="job.requiredSkills.length > 2">...</span></td>
+                            <td>{{ job.responsibilities.slice(0, 2).join(', ') }}<span *ngIf="job.responsibilities.length > 2">...</span></td>
+                            <td>{{ job.openings }}</td>
+                            <td>{{ formatDate(job.createdAt) }}</td>
+                        </tr>
+                        <tr *ngIf="!loading && jobs.length === 0">
+                            <td colspan="11" class="text-center">No jobs found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-lg-4">
+                <div class="text-center text-lg-start py-3">Showing {{ jobs.length }} Entries</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end filter-offcanvas floating-offcanvas" tabindex="-1" id="JobListFilter">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Filter Jobs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="form-group-label">Job Title</div>
+                    <input type="text" class="form-control" placeholder="Enter Job Title" [(ngModel)]="filter.title">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="form-group-label">Location</div>
+                    <input type="text" class="form-control" placeholder="Enter Location" [(ngModel)]="filter.location">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="form-group-label">Job Type</div>
+                    <input type="text" class="form-control" placeholder="Enter Job Type" [(ngModel)]="filter.jobType">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-light w-100" (click)="resetFilter()">Reset</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" (click)="applyFilter()" data-bs-dismiss="offcanvas">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add/Edit Job Modal -->
+<div class="modal fade" id="AddNewJobModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">{{ isEditMode ? 'Edit Job' : 'Add New Job' }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Job Title</div>
+                            <input type="text" class="form-control" [(ngModel)]="jobForm.title" placeholder="Enter Job Title">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Location</div>
+                            <input type="text" class="form-control" [(ngModel)]="jobForm.location" placeholder="Enter Location">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Job Type</div>
+                            <input type="text" class="form-control" [(ngModel)]="jobForm.jobType" placeholder="Enter Job Type">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Experience</div>
+                            <input type="text" class="form-control" [(ngModel)]="jobForm.experience" placeholder="Enter Experience">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Openings</div>
+                            <input type="number" class="form-control" [(ngModel)]="jobForm.openings" placeholder="Enter Number of Openings">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group-label">Description</div>
+                            <textarea rows="3" class="form-control" [(ngModel)]="jobForm.description" placeholder="Enter Job Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group-label">Required Skills</div>
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" [(ngModel)]="skillInput" 
+                                    placeholder="Enter a skill" (keyup.enter)="addSkill()">
+                                <button type="button" class="btn btn-primary" (click)="addSkill()">
+                                    <i class="icon-dc-plus"></i>
+                                </button>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span *ngFor="let skill of jobForm.requiredSkills; let i = index" 
+                                    class="badge bg-secondary d-flex align-items-center gap-1">
+                                    {{ skill }}
+                                    <button type="button" class="btn-close btn-close-white" 
+                                        (click)="removeSkill(i)" style="font-size: 0.7em;"></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group-label">Responsibilities</div>
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" [(ngModel)]="responsibilityInput" 
+                                    placeholder="Enter a responsibility" (keyup.enter)="addResponsibility()">
+                                <button type="button" class="btn btn-primary" (click)="addResponsibility()">
+                                    <i class="icon-dc-plus"></i>
+                                </button>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span *ngFor="let responsibility of jobForm.responsibilities; let i = index" 
+                                    class="badge bg-info d-flex align-items-center gap-1">
+                                    {{ responsibility }}
+                                    <button type="button" class="btn-close btn-close-white" 
+                                        (click)="removeResponsibility(i)" style="font-size: 0.7em;"></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group-label">Status</div>
+                            <select class="form-control" [(ngModel)]="jobForm.isActive">
+                                <option [value]="true">Active</option>
+                                <option [value]="false">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal" (click)="resetForm()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="saveJob()" data-bs-dismiss="modal">{{ isEditMode ? 'Update' : 'Save' }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Job Modal -->
+<div class="modal fade" id="ViewJobModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Job Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="selectedJob">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Job Title</div>
+                            <input type="text" class="form-control" [value]="selectedJob.title" readonly>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Location</div>
+                            <input type="text" class="form-control" [value]="selectedJob.location" readonly>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Job Type</div>
+                            <input type="text" class="form-control" [value]="selectedJob.jobType" readonly>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Experience</div>
+                            <input type="text" class="form-control" [value]="selectedJob.experience" readonly>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Openings</div>
+                            <input type="text" class="form-control" [value]="selectedJob.openings" readonly>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <div class="form-group-label">Status</div>
+                            <input type="text" class="form-control" [value]="selectedJob.isActive ? 'Active' : 'Inactive'" readonly>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group-label">Description</div>
+                            <textarea rows="3" class="form-control" [value]="selectedJob.description" readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group-label">Required Skills</div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span *ngFor="let skill of selectedJob.requiredSkills" class="badge bg-secondary">{{ skill }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group-label">Responsibilities</div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span *ngFor="let responsibility of selectedJob.responsibilities" class="badge bg-info">{{ responsibility }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="DeleteJobModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cancelDelete()"></button>
+            </div>
+            <div class="modal-body text-center pt-0">
+                <div class="mb-4">
+                    <i class="icon-dc-delete text-danger" style="font-size: 4rem;"></i>
+                </div>
+                <h4 class="mb-3">Delete Job</h4>
+                <p class="text-muted mb-4" *ngIf="jobToDelete">
+                    Are you sure you want to delete the job <strong>{{ jobToDelete.title }}</strong>?<br>
+                    This action cannot be undone.
+                </p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal" (click)="cancelDelete()">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmDelete()">
+                    <i class="icon-dc-delete me-1"></i> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Toast Notification -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+    <div *ngIf="toastMessage" 
+         class="toast show" 
+         [class.bg-success]="toastType === 'success'"
+         [class.bg-danger]="toastType === 'error'"
+         role="alert">
+        <div class="toast-header">
+            <i *ngIf="toastType === 'success'" class="icon-dc-check text-success me-2"></i>
+            <i *ngIf="toastType === 'error'" class="icon-dc-close text-danger me-2"></i>
+            <strong class="me-auto text-white">{{ toastType === 'success' ? 'Success' : 'Error' }}</strong>
+        </div>
+        <div class="toast-body text-white">
+            {{ toastMessage }}
+        </div>
+    </div>
+</div>
+
+<style>
+.toast-container .toast {
+    min-width: 300px;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast.bg-success {
+    background-color: #28a745 !important;
+    border-color: #28a745;
+}
+
+.toast.bg-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545;
+}
+
+.toast-header {
+    background-color: rgba(0,0,0,0.1) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+</style>
