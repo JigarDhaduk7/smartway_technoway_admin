@@ -1,4 +1,4 @@
-<div class="row align-items-center justify-content-between">
+<div class="row align-items-center justify-content-between mb-3">
     <div class="col-auto">
         <div class="page-header-name">{{ isEditMode ? 'Edit Service' : 'Add Service' }}</div>
     </div>
@@ -7,22 +7,22 @@
 <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
     <div class="row">
         <div class="col-12 mb-4">
-            <div class="card">
+            <div class="card card-hover">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="form-group-label">Service Title *</label>
                                 <input type="text" class="form-control" [(ngModel)]="service.title" name="title" required (input)="onTitleChange()">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="form-group-label">Slug *</label>
                                 <input type="text" class="form-control" [(ngModel)]="service.slug" name="slug" required readonly>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="form-group-label">Status *</label>
                                 <select class="form-control" [(ngModel)]="service.status" name="status" required>
@@ -38,26 +38,26 @@
 
         <!-- Card Section -->
         <div class="col-12 mb-4">
-            <div class="card">
-                <div class="card-header mt-3">
-                    <h5>Card Information</h5>
+            <div class="card card-hover">
+                <div class="card-header">
+                    <h5 class="mb-0 fw-semibold font-15">Card Information</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label class="form-group-label">Short Description *</label>
-                                <textarea class="form-control" rows="3" [(ngModel)]="service.card!.shortDescription" name="shortDescription" required></textarea>
+                                <textarea class="form-control h-auto" rows="5" [(ngModel)]="service.card!.shortDescription" name="shortDescription" required></textarea>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-group-label">Card Icon</label>
                                 <input type="file" class="form-control" accept="image/*" (change)="onCardIconFileSelect($event)" #cardIconInput>
-                                <div *ngIf="cardIconPreview" class="mt-2 position-relative d-inline-block">
-                                    <img [src]="cardIconPreview" alt="Card Icon" style="width: 100px; height: 100px; object-fit: cover;">
-                                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0" (click)="removeCardIcon(); cardIconInput.value=''" style="padding: 2px 6px;">
-                                        <i class="icon-dc-close"></i>
+                                <div *ngIf="cardIconPreview" class="img-uploaded-preview-block">
+                                    <img [src]="cardIconPreview" alt="Card Icon">
+                                    <button type="button" class="btn btn-link position-absolute top-0 end-0 p-1" (click)="removeCardIcon(); cardIconInput.value=''">
+                                        <i class="icon-dc-delete font-16"></i>
                                     </button>
                                 </div>
                             </div>
@@ -69,9 +69,9 @@
 
         <!-- Hero Section -->
         <div class="col-12 mb-4">
-            <div class="card">
-                <div class="card-header mt-3">
-                    <h5>Hero Section</h5>
+            <div class="card card-hover">
+                <div class="card-header">
+                    <h5 class="mb-0 fw-semibold font-15">Hero Section</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -93,59 +93,70 @@
         </div>
 
         <!-- Services Overview -->
-        <div class="col-12 mb-4">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5>Services Overview</h5>
-                    <button type="button" class="btn btn-sm btn-primary" (click)="addService()">
-                        <i class="icon-dc-plus"></i> Add Service
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-group-label">Overview Title *</label>
-                                <input type="text" class="form-control" [(ngModel)]="service.servicesOverview!.title" name="overviewTitle" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-group-label">Overview Description *</label>
-                                <input type="text" class="form-control" [(ngModel)]="service.servicesOverview!.description" name="overviewDescription" required>
-                            </div>
-                        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="col-12 mb-4">
+                <div class="card card-hover">
+                    <div class="card-header accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h5 class="mb-0 fw-semibold font-15">Services Overview</h5>
                     </div>
-
-                    <div *ngFor="let svc of service.servicesOverview!.services; let i = index" class="border p-3 mb-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6>Service {{ i + 1 }}</h6>
-                            <button type="button" class="btn btn-sm btn-danger" (click)="removeService(i)">
-                                <i class="icon-dc-delete"></i>
-                            </button>
+                    <div id="collapseOne" class="accordion-collapse card-body collapse">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-group-label">Overview Title *</label>
+                                    <input type="text" class="form-control" [(ngModel)]="service.servicesOverview!.title" name="overviewTitle" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-group-label">Overview Description *</label>
+                                    <input type="text" class="form-control" [(ngModel)]="service.servicesOverview!.description" name="overviewDescription" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="form-group-label">Title</label>
-                                    <input type="text" class="form-control" [(ngModel)]="svc.title" [name]="'serviceTitle' + i">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="form-group-label">Description</label>
-                                    <input type="text" class="form-control" [(ngModel)]="svc.description" [name]="'serviceDesc' + i">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="form-group-label">Service Icon</label>
-                                    <input type="file" class="form-control" accept="image/*" (change)="onServiceIconFileSelect($event, i)" #serviceIconInput>
-                                    <div *ngIf="serviceIconPreviews[i]" class="mt-2 position-relative d-inline-block">
-                                        <img [src]="serviceIconPreviews[i]" alt="Service Icon" style="width: 80px; height: 80px; object-fit: cover;">
-                                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0" (click)="removeServiceIcon(i); serviceIconInput.value=''" style="padding: 2px 6px;">
-                                            <i class="icon-dc-close"></i>
+                            <div *ngFor="let svc of service.servicesOverview!.services; let i = index" class="col-lg-6 col-xl-4 mb-4">
+                                <div class="card card-hover h-100">
+                                    <div class="card-header">
+                                        <h5 class="mb-0 fw-semibold font-15">Service {{ i + 1 }}</h5>
+                                        <button type="button" class="btn btn-link" (click)="removeService(i)">
+                                            <i class="icon-dc-delete font-18"></i>
                                         </button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-group-label">Title</label>
+                                                    <input type="text" class="form-control" [(ngModel)]="svc.title" [name]="'serviceTitle' + i">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-group-label">Description</label>
+                                                    <input type="text" class="form-control" [(ngModel)]="svc.description" [name]="'serviceDesc' + i">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-group-label">Service Icon</label>
+                                                    <input type="file" class="form-control" accept="image/*" (change)="onServiceIconFileSelect($event, i)" #serviceIconInput>
+                                                    <div *ngIf="serviceIconPreviews[i]" class="img-uploaded-preview-block">
+                                                        <img [src]="serviceIconPreviews[i]" alt="Service Icon">
+                                                        <button type="button" class="btn btn-link position-absolute top-0 end-0 p-1" (click)="removeServiceIcon(i); serviceIconInput.value=''" style="padding: 2px 6px;">
+                                                            <i class="icon-dc-delete font-16"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-4 mb-4">
+                                <div class="card card-hover h-100" style="border-style: dashed; background: #f4f8f9; border-width: 2px;">
+                                    <div class="card-body p-0 d-flex align-items-center justify-content-center h-100" style="min-height: 335px; cursor: pointer;" (click)="addService()">
+                                        <i class="icon-dc-plus pe-2"></i> <span class="fw-semibold">Add Service</span>
                                     </div>
                                 </div>
                             </div>
@@ -153,50 +164,60 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Process Section -->
-        <div class="col-12 mb-4">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5>Process Section</h5>
-                    <button type="button" class="btn btn-sm btn-primary" (click)="addStep()">
-                        <i class="icon-dc-plus"></i> Add Step
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="form-group-label">Process Title *</label>
-                                <input type="text" class="form-control" [(ngModel)]="service.processSection!.title" name="processTitle" required>
-                            </div>
-                        </div>
+            <!-- Process Section -->
+            <div class="col-12 mb-4">
+                <div class="card card-hover">
+                    <div class="card-header accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h5 class="mb-0 fw-semibold font-15">Process Section</h5>
                     </div>
-
-                    <div *ngFor="let step of service.processSection!.steps; let i = index" class="border p-3 mb-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6>Step {{ step.step }}</h6>
-                            <button type="button" class="btn btn-sm btn-danger" (click)="removeStep(i)">
-                                <i class="icon-dc-delete"></i>
-                            </button>
-                        </div>
+                    <div id="collapseTwo" class="accordion-collapse card-body collapse">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <label class="form-group-label">Title</label>
-                                    <input type="text" class="form-control" [(ngModel)]="step.title" [name]="'stepTitle' + i">
+                                    <label class="form-group-label">Process Title *</label>
+                                    <input type="text" class="form-control" [(ngModel)]="service.processSection!.title" name="processTitle" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-group-label">Step Icon</label>
-                                    <input type="file" class="form-control" accept="image/*" (change)="onStepIconFileSelect($event, i)" #stepIconInput>
-                                    <div *ngIf="stepIconPreviews[i]" class="mt-2 position-relative d-inline-block">
-                                        <img [src]="stepIconPreviews[i]" alt="Step Icon" style="width: 80px; height: 80px; object-fit: cover;">
-                                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0" (click)="removeStepIcon(i); stepIconInput.value=''" style="padding: 2px 6px;">
-                                            <i class="icon-dc-close"></i>
+                        </div>
+
+                        <div class="row">
+                            <div *ngFor="let step of service.processSection!.steps; let i = index" class="col-lg-6 col-xl-4 mb-4">
+                                <div class="card card-hover h-100">
+                                    <div class="card-header">
+                                        <h6>Step {{ step.step }}</h6>
+                                        <button type="button" class="btn btn-link" (click)="removeStep(i)">
+                                            <i class="icon-dc-delete font-18"></i>
                                         </button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-group-label">Title</label>
+                                                    <input type="text" class="form-control" [(ngModel)]="step.title" [name]="'stepTitle' + i">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-group-label">Step Icon</label>
+                                                    <input type="file" class="form-control" accept="image/*" (change)="onStepIconFileSelect($event, i)" #stepIconInput>
+                                                    <div *ngIf="stepIconPreviews[i]" class="img-uploaded-preview-block">
+                                                        <img [src]="stepIconPreviews[i]" alt="Step Icon">
+                                                        <button type="button" class="btn btn-link position-absolute top-0 end-0 p-1" (click)="removeStepIcon(i); stepIconInput.value=''" style="padding: 2px 6px;">
+                                                            <i class="icon-dc-delete font-16"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-4 mb-4">
+                                <div class="card card-hover h-100" style="border-style: dashed; background: #f4f8f9; border-width: 2px;">
+                                    <div class="card-body p-0 d-flex align-items-center justify-content-center h-100" style="min-height: 335px; cursor: pointer;" (click)="addStep()">
+                                        <i class="icon-dc-plus pe-2"></i> <span class="fw-semibold">Add Step</span>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +246,7 @@
     <div *ngIf="toastMessage" class="toast show" [class.bg-success]="toastType === 'success'" [class.bg-danger]="toastType === 'error'" role="alert">
         <div class="toast-header">
             <i *ngIf="toastType === 'success'" class="icon-dc-check text-success me-2"></i>
-            <i *ngIf="toastType === 'error'" class="icon-dc-close text-danger me-2"></i>
+            <i *ngIf="toastType === 'error'" class="icon-dc-delete text-danger me-2"></i>
             <strong class="me-auto text-white">{{ toastType === 'success' ? 'Success' : 'Error' }}</strong>
         </div>
         <div class="toast-body text-white">
