@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './_pages/login/login.component';
 import { AfterloginComponent } from './afterlogin/afterlogin.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: AfterloginComponent,
+    canActivate: [AuthGuard],
     children:[
       { 
         path: 'html', 
