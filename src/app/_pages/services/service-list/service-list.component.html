@@ -43,20 +43,18 @@
                         <tr *ngFor="let service of services" [hidden]="loading">
                             <td class="first-fixed-col">
                                 <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
+                                    <!-- <li class="actions-item">
                                         <button type="button" class="btn btn-outline-primary action-btn-32" (click)="viewService(service)">
                                             <i class="icon-dc-eye"></i>
                                         </button>
-                                    </li>
+                                    </li> -->
                                     <li class="actions-item">
                                         <button type="button" class="btn btn-outline-primary action-btn-32" (click)="editService(service)">
                                             <i class="icon-dc-edit"></i>
                                         </button>
                                     </li>
                                     <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32"
-                                            data-bs-toggle="modal" data-bs-target="#DeleteServiceModal"
-                                            (click)="deleteService(service)">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32" data-bs-toggle="modal" data-bs-target="#DeleteServiceModal" (click)="deleteService(service)">
                                             <i class="icon-dc-delete"></i>
                                         </button>
                                     </li>
@@ -74,8 +72,7 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" 
-                                    [class]="service.status === 'active' ? 'badge badge-green' : 'badge badge-red'">
+                                <button type="button" [class]="service.status === 'active' ? 'badge badge-green' : 'badge badge-red'">
                                     {{ service.status === 'active' ? 'Active' : 'Inactive' }}
                                 </button>
                             </td>
@@ -167,11 +164,7 @@
 
 <!-- Toast Notification -->
 <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-    <div *ngIf="toastMessage" 
-         class="toast show" 
-         [class.bg-success]="toastType === 'success'"
-         [class.bg-danger]="toastType === 'error'"
-         role="alert">
+    <div *ngIf="toastMessage" class="toast show" [class.bg-success]="toastType === 'success'" [class.bg-danger]="toastType === 'error'" role="alert">
         <div class="toast-header">
             <i *ngIf="toastType === 'success'" class="icon-dc-check text-success me-2"></i>
             <i *ngIf="toastType === 'error'" class="icon-dc-close text-danger me-2"></i>
@@ -184,34 +177,35 @@
 </div>
 
 <style>
-.toast-container .toast {
-    min-width: 300px;
-    animation: slideIn 0.3s ease-in-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
+    .toast-container .toast {
+        min-width: 300px;
+        animation: slideIn 0.3s ease-in-out;
     }
-    to {
-        transform: translateX(0);
-        opacity: 1;
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
-}
 
-.toast.bg-success {
-    background-color: #28a745 !important;
-    border-color: #28a745;
-}
+    .toast.bg-success {
+        background-color: #28a745 !important;
+        border-color: #28a745;
+    }
 
-.toast.bg-danger {
-    background-color: #dc3545 !important;
-    border-color: #dc3545;
-}
+    .toast.bg-danger {
+        background-color: #dc3545 !important;
+        border-color: #dc3545;
+    }
 
-.toast-header {
-    background-color: rgba(0,0,0,0.1) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-}
+    .toast-header {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
 </style>

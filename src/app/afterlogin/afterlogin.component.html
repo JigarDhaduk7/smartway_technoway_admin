@@ -68,24 +68,21 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <a href="javascript:void(0)" class="accordion-button collapsed"
-                                    data-bs-toggle="collapse" data-bs-target="#CareerCollapse1" aria-expanded="false"
-                                    aria-controls="CareerCollapse1">
+                                <a href="javascript:void(0)" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#CareerCollapse1" aria-expanded="false" aria-controls="CareerCollapse1">
                                     <div class="sidebar-menu-icon"><i class="icon-dc-career"></i></div>
                                     <div class="sidebar-menu-name">Career</div>
                                 </a>
                             </h2>
-                            <div id="CareerCollapse1" class="accordion-collapse collapse"
-                                data-bs-parent="#SidebarAccordions">
+                            <div id="CareerCollapse1" class="accordion-collapse collapse" data-bs-parent="#SidebarAccordions">
                                 <div class="accordion-body">
                                     <div class="sidebar-submenu">
                                         <ul>
                                             <li>
                                                 <a [routerLink]="['/career/job-opening-list']">Job Opening</a>
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                                 <a [routerLink]="['/career/career-enquiry-list']">Career Enquiry</a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -101,7 +98,7 @@
                                 </a>
                             </h2>
                         </div>
-                       
+
                     </div>
                 </div>
                 <div class="">
@@ -109,8 +106,7 @@
                         <div class="accordion accordion-card accordion-transparent-card">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <a href="javascript:void(0)" type="button" class="accordion-btn-link"
-                                        data-bs-toggle="modal" data-bs-target="#LogOutModal">
+                                    <a href="javascript:void(0)" type="button" class="accordion-btn-link" data-bs-toggle="modal" data-bs-target="#LogOutModal">
                                         <div class="sidebar-menu-icon">
                                             <i class="icon-dc-log-out"></i>
                                         </div>
@@ -139,8 +135,7 @@
                                 <div class="dropdown-hover">
                                     <div class="dropdown-hover-toggle d-flex align-items-center ">
                                         <div class="user-profile-round">
-                                            <img src="../../assets/images/user-profile-image.png"
-                                                class="user-profile-round-img">
+                                            <img src="../../assets/images/user-profile-image.png" class="user-profile-round-img">
                                         </div>
                                         <div class="ps-2 user-profile-detail">
                                             <div class="primary-text">
@@ -152,16 +147,13 @@
                                     </div>
                                     <div class="dropdown-menu-hover-wrap dropdown-hover-right">
                                         <div class="dropdown-hover-menu">
-                                            <button type="button" class="dropdown-hover-item px-3"
-                                                data-bs-toggle="modal" data-bs-target="#UpdateProfilePopup"><i
-                                                    class="fal fa-user-edit dropdown-item-icon font-16"></i> Profile
+                                            <button type="button" class="dropdown-hover-item px-3" data-bs-toggle="modal" data-bs-target="#UpdateProfilePopup"><i class="fal fa-user-edit dropdown-item-icon font-16"></i> Profile
                                             </button>
                                             <!-- <button type="button" class="dropdown-hover-item px-3"
                                                 data-bs-toggle="modal" data-bs-target="#ChangePasswordModal"> <i
                                                     class="fal fa-key dropdown-item-icon font-16"></i> Change Password
                                             </button> -->
-                                            <button type="button" class="dropdown-hover-item text-danger px-3"
-                                                data-bs-toggle="modal" data-bs-target="#LogOutModal">
+                                            <button type="button" class="dropdown-hover-item text-danger px-3" data-bs-toggle="modal" data-bs-target="#LogOutModal">
                                                 <i class="fal fa-sign-in-alt dropdown-item-icon font-16"></i> Logout
                                             </button>
                                         </div>
@@ -177,15 +169,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="DeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-hidden="true">
+<div class="modal fade" id="DeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-delete">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="plain-modal-wrap">
                     <div class="plain-modal-icon">
-                        <button type="button" class="btn-close close-btn-without-header" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close close-btn-without-header" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div class="plain-modal-icon-round">
                             <i class="icon-dc-delete"></i>
                         </div>
@@ -197,8 +187,7 @@
                     </div>
                     <div class="plain-modal-button">
                         <button type="button" class="btn btn-light col-4" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-primary col-4" data-bs-dismiss="modal"
-                            data-bs-toggle="modal" data-bs-target="#DeleteRecordModal">Yes</button>
+                        <button type="button" class="btn btn-primary col-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#DeleteRecordModal">Yes</button>
                     </div>
                 </div>
             </div>
@@ -206,15 +195,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="StatusChangeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-hidden="true">
+<div class="modal fade" id="StatusChangeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-delete">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="plain-modal-wrap">
                     <div class="plain-modal-icon">
-                        <button type="button" class="btn-close close-btn-without-header" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close close-btn-without-header" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div class="plain-modal-icon-round">
                             <i class="icon-dc-change-status"></i>
                         </div>
@@ -226,8 +213,7 @@
                     </div>
                     <div class="plain-modal-button">
                         <button type="button" class="btn btn-light col-4" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-primary col-4" data-bs-dismiss="modal"
-                            data-bs-toggle="modal" data-bs-target="#DeleteRecordModal">Yes</button>
+                        <button type="button" class="btn btn-primary col-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#DeleteRecordModal">Yes</button>
                     </div>
                 </div>
             </div>
@@ -250,8 +236,7 @@
                                 <div class="form-group">
                                     <div class="form-group-label">Email<span class="required-field-star">*</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Enter Email"
-                                        value="geoffreyrush@gmail.com" readonly>
+                                    <input type="text" class="form-control" placeholder="Enter Email" value="geoffreyrush@gmail.com" readonly>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -263,8 +248,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <div class="form-group-label">Mobile Number<span
-                                            class="required-field-star">*</span></div>
+                                    <div class="form-group-label">Mobile Number<span class="required-field-star">*</span></div>
                                     <input type="text" class="form-control" placeholder="Enter Mobile Number">
                                 </div>
                             </div>
@@ -280,15 +264,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="LogOutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-hidden="true">
+<div class="modal fade" id="LogOutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-delete">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="plain-modal-wrap">
                     <div class="plain-modal-icon">
-                        <button type="button" class="btn-close close-btn-without-header" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close close-btn-without-header" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div class="plain-modal-icon-round">
                             <i class="icon-dc-log-out"></i>
                         </div>
@@ -300,8 +282,7 @@
                     </div>
                     <div class="plain-modal-button">
                         <button type="button" class="btn btn-light col-4" data-bs-dismiss="modal">No</button>
-                        <a [routerLink]="['/login']" class="btn btn-primary col-4" data-bs-dismiss="modal"
-                            data-bs-toggle="modal" data-bs-target="#DeleteRecordModal">Yes</a>
+                        <a [routerLink]="['/login']" class="btn btn-primary col-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#DeleteRecordModal">Yes</a>
                     </div>
                 </div>
             </div>
