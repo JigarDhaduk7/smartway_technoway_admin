@@ -3,6 +3,7 @@
 .input-group {
     .btn {
         z-index: 1;
+        border-radius: 10px;
     }
 }
 
@@ -10,7 +11,7 @@
     border-radius: 15px 0 15px 0;
     min-width: 100px;
     // border-radius: 7px;
-    padding-block: 12px;
+    padding-block: 11px;
     padding-inline: 18px;
     font-size: var(--font-size-13);
     font-weight: var(--font-medium);

@@ -437,3 +437,67 @@ export class SkillService {
     return this.http.delete(`${this.apiUrl}/skills/delete/${id}`);
   }
 }
+
+export interface Leader {
+  _id: string;
+  name: string;
+  position: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface LeaderResponse {
+  success: boolean;
+  data: Leader[];
+}
+
+export interface LeaderFilter {
+  name?: string;
+  position?: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LeaderService {
+  private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
+
+  getLeaders(filter?: LeaderFilter): Observable<LeaderResponse> {
+    return this.http.get<LeaderResponse>(`${this.apiUrl}/leaders`).pipe(
+      map((response: LeaderResponse) => {
+        if (!filter || (!filter.name && !filter.position)) {
+          return response;
+        }
+
+        const filteredData = response.data.filter(leader => {
+          const nameMatch = !filter.name ||
+            leader.name.toLowerCase().includes(filter.name.toLowerCase());
+          const positionMatch = !filter.position ||
+            leader.position.toLowerCase().includes(filter.position.toLowerCase());
+          return nameMatch && positionMatch;
+        });
+
+        return { ...response, data: filteredData };
+      })
+    );
+  }
+
+  getLeaderById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/leaders/${id}`);
+  }
+
+  createLeader(leaderData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/leaders/create`, leaderData);
+  }
+
+  updateLeader(id: string, leaderData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/leaders/update/${id}`, leaderData);
+  }
+
+  deleteLeader(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/leaders/delete/${id}`);
+  }
+}

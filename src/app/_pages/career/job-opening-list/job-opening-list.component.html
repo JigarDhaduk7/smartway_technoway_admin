@@ -5,14 +5,12 @@
     <div class="col-auto text-end">
         <div class="nav-header-action">
             <div class="nav-head-item">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewJobModal"
-                    (click)="addNewJob()">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewJobModal" (click)="addNewJob()">
                     <i class="icon-dc-plus btn-icon-left"></i> Add New Job
                 </button>
             </div>
             <div class="nav-head-item">
-                <button type="button" class="btn btn-light" data-bs-toggle="offcanvas"
-                    data-bs-target="#JobListFilter">
+                <button type="button" class="btn btn-light" data-bs-toggle="offcanvas" data-bs-target="#JobListFilter">
                     <i class="icon-dc-filter btn-icon-left"></i> Filter
                     <span *ngIf="isFilterApplied" class="badge bg-primary ms-1">{{ activeFilterCount }}</span>
                 </button>
@@ -50,23 +48,17 @@
                             <td class="first-fixed-col">
                                 <ul class="actions-wrap actions-style-1">
                                     <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32"
-                                            data-bs-toggle="modal" data-bs-target="#ViewJobModal"
-                                            (click)="viewJob(job)">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32" data-bs-toggle="modal" data-bs-target="#ViewJobModal" (click)="viewJob(job)">
                                             <i class="icon-dc-eye"></i>
                                         </button>
                                     </li>
                                     <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32"
-                                            data-bs-toggle="modal" data-bs-target="#AddNewJobModal"
-                                            (click)="editJob(job)">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32" data-bs-toggle="modal" data-bs-target="#AddNewJobModal" (click)="editJob(job)">
                                             <i class="icon-dc-edit"></i>
                                         </button>
                                     </li>
                                     <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32"
-                                            data-bs-toggle="modal" data-bs-target="#DeleteJobModal"
-                                            (click)="deleteJob(job)">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32" data-bs-toggle="modal" data-bs-target="#DeleteJobModal" (click)="deleteJob(job)">
                                             <i class="icon-dc-delete"></i>
                                         </button>
                                     </li>
@@ -81,8 +73,7 @@
                             <td>{{ job.jobType }}</td>
                             <td>{{ job.experience }}</td>
                             <td>
-                                <button type="button" 
-                                    [class]="job.isActive ? 'badge badge-green' : 'badge badge-red'">
+                                <button type="button" [class]="job.isActive ? 'badge badge-green' : 'badge badge-red'">
                                     {{ job.isActive ? 'Active' : 'Inactive' }}
                                 </button>
                             </td>
@@ -198,18 +189,15 @@
                         <div class="form-group">
                             <div class="form-group-label">Required Skills</div>
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" [(ngModel)]="skillInput" 
-                                    placeholder="Enter a skill" (keyup.enter)="addSkill()">
-                                <button type="button" class="btn btn-primary" (click)="addSkill()">
-                                    <i class="icon-dc-plus"></i>
+                                <input type="text" class="form-control" [(ngModel)]="skillInput" placeholder="Enter a skill" (keyup.enter)="addSkill()">
+                                <button type="button" class="btn btn-primary min-w-auto" (click)="addSkill()">
+                                    <i class="icon-dc-plus me-2"></i> Add
                                 </button>
                             </div>
                             <div class="d-flex flex-wrap gap-2">
-                                <span *ngFor="let skill of jobForm.requiredSkills; let i = index" 
-                                    class="badge bg-secondary d-flex align-items-center gap-1">
+                                <span *ngFor="let skill of jobForm.requiredSkills; let i = index" class="badge bg-secondary d-flex align-items-center gap-1">
                                     {{ skill }}
-                                    <button type="button" class="btn-close btn-close-white" 
-                                        (click)="removeSkill(i)" style="font-size: 0.7em;"></button>
+                                    <button type="button" class="btn-close btn-close-white" (click)="removeSkill(i)" style="font-size: 0.7em;"></button>
                                 </span>
                             </div>
                         </div>
@@ -218,18 +206,15 @@
                         <div class="form-group">
                             <div class="form-group-label">Responsibilities</div>
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" [(ngModel)]="responsibilityInput" 
-                                    placeholder="Enter a responsibility" (keyup.enter)="addResponsibility()">
-                                <button type="button" class="btn btn-primary" (click)="addResponsibility()">
-                                    <i class="icon-dc-plus"></i>
+                                <input type="text" class="form-control" [(ngModel)]="responsibilityInput" placeholder="Enter a responsibility" (keyup.enter)="addResponsibility()">
+                                <button type="button" class="btn btn-primary min-w-auto" (click)="addResponsibility()">
+                                    <i class="icon-dc-plus me-2"></i> Add
                                 </button>
                             </div>
                             <div class="d-flex flex-wrap gap-2">
-                                <span *ngFor="let responsibility of jobForm.responsibilities; let i = index" 
-                                    class="badge bg-info d-flex align-items-center gap-1">
+                                <span *ngFor="let responsibility of jobForm.responsibilities; let i = index" class="badge bg-info d-flex align-items-center gap-1">
                                     {{ responsibility }}
-                                    <button type="button" class="btn-close btn-close-white" 
-                                        (click)="removeResponsibility(i)" style="font-size: 0.7em;"></button>
+                                    <button type="button" class="btn-close btn-close-white" (click)="removeResponsibility(i)" style="font-size: 0.7em;"></button>
                                 </span>
                             </div>
                         </div>
@@ -360,11 +345,7 @@
 
 <!-- Custom Toast Notification -->
 <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-    <div *ngIf="toastMessage" 
-         class="toast show" 
-         [class.bg-success]="toastType === 'success'"
-         [class.bg-danger]="toastType === 'error'"
-         role="alert">
+    <div *ngIf="toastMessage" class="toast show" [class.bg-success]="toastType === 'success'" [class.bg-danger]="toastType === 'error'" role="alert">
         <div class="toast-header">
             <i *ngIf="toastType === 'success'" class="icon-dc-check text-success me-2"></i>
             <i *ngIf="toastType === 'error'" class="icon-dc-close text-danger me-2"></i>
@@ -377,34 +358,35 @@
 </div>
 
 <style>
-.toast-container .toast {
-    min-width: 300px;
-    animation: slideIn 0.3s ease-in-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
+    .toast-container .toast {
+        min-width: 300px;
+        animation: slideIn 0.3s ease-in-out;
     }
-    to {
-        transform: translateX(0);
-        opacity: 1;
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
-}
 
-.toast.bg-success {
-    background-color: #28a745 !important;
-    border-color: #28a745;
-}
+    .toast.bg-success {
+        background-color: #28a745 !important;
+        border-color: #28a745;
+    }
 
-.toast.bg-danger {
-    background-color: #dc3545 !important;
-    border-color: #dc3545;
-}
+    .toast.bg-danger {
+        background-color: #dc3545 !important;
+        border-color: #dc3545;
+    }
 
-.toast-header {
-    background-color: rgba(0,0,0,0.1) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-}
+    .toast-header {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
 </style>

@@ -150,6 +150,10 @@ const routes: Routes = [
       { 
         path: 'seo-page-list', 
         loadChildren: () => import('./_pages/seo-page-list/seo-page-list.module').then(m => m.SeoPageListModule) 
+      },
+      { 
+        path: 'visionary-leadership', 
+        loadChildren: () => import('./_pages/visionary-leadership/visionary-leadership.module').then(m => m.VisionaryLeadershipModule) 
       }
     ]
   },
