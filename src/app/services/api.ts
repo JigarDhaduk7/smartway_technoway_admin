@@ -437,3 +437,20 @@ export class SkillService {
     return this.http.delete(`${this.apiUrl}/skills/delete/${id}`);
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
+
+  getProfile(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/auth/profile`);
+  }
+
+  updateProfile(data: { userName: string; mobileNumber: string }): Observable<any> {
+    return this.http.put(`${this.apiUrl}/auth/profile`, data);
+  }
+}

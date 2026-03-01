@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, HostListener, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '../services/api';
 
 @Component({
   selector: 'app-afterlogin',
@@ -15,6 +16,17 @@ export class AfterloginComponent implements OnInit {
 
   imageUrl: string = origin + '/assets/images/user-details-profile-image.png';
 
+  userProfile: any = {
+    email: '',
+    userName: '',
+    mobileNumber: ''
+  };
+
+  updateForm: any = {
+    userName: '',
+    mobileNumber: ''
+  };
+
   openMenu() {
     if (document.body.classList.contains('sidebar-open')) {
       this.renderer.removeClass(document.body, 'sidebar-open');
@@ -27,7 +39,7 @@ export class AfterloginComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private router: Router,
-    // private toastr:ToastrAlert
+    private authService: AuthService
   ) {
   }
 
@@ -69,7 +81,40 @@ export class AfterloginComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.loadProfile();
+  }
 
+  loadProfile() {
+    this.authService.getProfile().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.userProfile = res.user;
+          this.updateForm.userName = res.user.userName;
+          this.updateForm.mobileNumber = res.user.mobileNumber;
+        }
+      },
+      error: (err) => console.error('Error loading profile:', err)
+    });
+  }
+
+  updateProfile() {
+    this.authService.updateProfile(this.updateForm).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.userProfile = res.user;
+          alert('Profile updated successfully');
+          const modal = document.getElementById('UpdateProfilePopup');
+          if (modal) {
+            const bootstrapModal = (window as any).bootstrap.Modal.getInstance(modal);
+            if (bootstrapModal) bootstrapModal.hide();
+          }
+        }
+      },
+      error: (err) => {
+        console.error('Error updating profile:', err);
+        alert('Failed to update profile');
+      }
+    });
   }
 
 
