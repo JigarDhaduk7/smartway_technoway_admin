@@ -9,8 +9,7 @@
         <div class="accordion accordion-card accordion-gray-card">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button accordion-plus-icn bg-white" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#defaultaccordion1" aria-expanded="true" aria-controls="defaultaccordion1">
+                    <button class="accordion-button accordion-plus-icn bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#defaultaccordion1" aria-expanded="true" aria-controls="defaultaccordion1">
                         <span class="heading-xxl font-17 m-0">Event Details</span>
                     </button>
                 </h2>
@@ -21,26 +20,21 @@
                                 <div class="form-group">
                                     <div class="form-group-label">Event Title<span class="required-field-star">*</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Enter Event Title"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control" placeholder="Enter Event Title" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <div class="form-group-label">Event Sub Title<span
-                                            class="required-field-star">*</span>
+                                    <div class="form-group-label">Event Sub Title<span class="required-field-star">*</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Enter Event Sub Title"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control" placeholder="Enter Event Sub Title" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <div class="form-group-label">Status<span class="required-field-star">*</span></div>
-                                    <ng-select class="ng-select-custom" [clearable]="false" [(ngModel)]="SelectOption"
-                                        name="SelectOption1" placeholder="Select Status">
-                                        <ng-option *ngFor="let BT of SelectOption1"
-                                            [value]="BT.value">{{BT.label}}</ng-option>
+                                    <ng-select class="ng-select-custom" [clearable]="false" [(ngModel)]="SelectOption" name="SelectOption1" placeholder="Select Status">
+                                        <ng-option *ngFor="let BT of SelectOption1" [value]="BT.value">{{BT.label}}</ng-option>
                                     </ng-select>
                                 </div>
                             </div>
@@ -48,17 +42,14 @@
                                 <div class="form-group">
                                     <div class="form-group-label">Event Year<span class="required-field-star">*</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Enter Event Year"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control" placeholder="Enter Event Year" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <div class="form-group-label">Image Folder Name<span
-                                            class="required-field-star">*</span>
+                                    <div class="form-group-label">Image Folder Name<span class="required-field-star">*</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Enter Image Folder Name"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control" placeholder="Enter Image Folder Name" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -67,8 +58,7 @@
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button accordion-plus-icn bg-white" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#defaultaccordion2" aria-expanded="true" aria-controls="defaultaccordion2">
+                    <button class="accordion-button accordion-plus-icn bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#defaultaccordion2" aria-expanded="true" aria-controls="defaultaccordion2">
                         <div class="heading-xxl font-17 m-0">Images <span class="
                                 required-field-star">(Images Size 1080*1080)</span></div>
                     </button>
@@ -77,8 +67,7 @@
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col-12 text-end mb-3">
-                                <button type="button" class="btn btn-primary"> <i
-                                        class="icon-dc-plus btn-icon-left"></i> Add
+                                <button type="button" class="btn btn-primary"> <i class="icon-dc-plus btn-icon-left"></i> Add
                                     More Features</button>
                             </div>
                             <div class="col-12">
@@ -94,14 +83,11 @@
                                                     </div>
                                                     <div class="col-12 mb-3 py-2">
                                                         <div class="uploader">
-                                                            <input id="file-upload" type="file" name="fileUpload"
-                                                                accept="image/*" />
+                                                            <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
                                                             <label for="file-upload" id="file-drag">
-                                                                <img id="file-image" src="#" alt="Preview"
-                                                                    class="hidden">
+                                                                <img id="file-image" src="#" alt="Preview" class="hidden">
                                                                 <div id="start">
-                                                                    <i class="fal fa-cloud-upload-alt"
-                                                                        aria-hidden="true"></i>
+                                                                    <i class="fal fa-cloud-upload-alt" aria-hidden="true"></i>
                                                                     <div class="fw-bold">Upload a File</div>
                                                                     <div>Drag and drop Files here</div>
                                                                 </div>
@@ -110,13 +96,9 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <div class="form-group-label">Status<span
-                                                                    class="required-field-star">*</span></div>
-                                                            <ng-select class="ng-select-custom" [clearable]="false"
-                                                                [(ngModel)]="SelectOption" name="SelectOption1"
-                                                                placeholder="Select Status">
-                                                                <ng-option *ngFor="let BT of SelectOption1"
-                                                                    [value]="BT.value">{{BT.label}}</ng-option>
+                                                            <div class="form-group-label">Status<span class="required-field-star">*</span></div>
+                                                            <ng-select class="ng-select-custom" [clearable]="false" [(ngModel)]="SelectOption" name="SelectOption1" placeholder="Select Status">
+                                                                <ng-option *ngFor="let BT of SelectOption1" [value]="BT.value">{{BT.label}}</ng-option>
                                                             </ng-select>
                                                         </div>
                                                     </div>
@@ -135,14 +117,11 @@
                                                     </div>
                                                     <div class="col-12 mb-3 py-2">
                                                         <div class="uploader">
-                                                            <input id="file-upload" type="file" name="fileUpload"
-                                                                accept="image/*" />
+                                                            <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
                                                             <label for="file-upload" id="file-drag">
-                                                                <img id="file-image" src="#" alt="Preview"
-                                                                    class="hidden">
+                                                                <img id="file-image" src="#" alt="Preview" class="hidden">
                                                                 <div id="start">
-                                                                    <i class="fal fa-cloud-upload-alt"
-                                                                        aria-hidden="true"></i>
+                                                                    <i class="fal fa-cloud-upload-alt" aria-hidden="true"></i>
                                                                     <div class="fw-bold">Upload a File</div>
                                                                     <div>Drag and drop Files here</div>
                                                                 </div>
@@ -151,13 +130,9 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <div class="form-group-label">Status<span
-                                                                    class="required-field-star">*</span></div>
-                                                            <ng-select class="ng-select-custom" [clearable]="false"
-                                                                [(ngModel)]="SelectOption" name="SelectOption1"
-                                                                placeholder="Select Status">
-                                                                <ng-option *ngFor="let BT of SelectOption1"
-                                                                    [value]="BT.value">{{BT.label}}</ng-option>
+                                                            <div class="form-group-label">Status<span class="required-field-star">*</span></div>
+                                                            <ng-select class="ng-select-custom" [clearable]="false" [(ngModel)]="SelectOption" name="SelectOption1" placeholder="Select Status">
+                                                                <ng-option *ngFor="let BT of SelectOption1" [value]="BT.value">{{BT.label}}</ng-option>
                                                             </ng-select>
                                                         </div>
                                                     </div>
@@ -176,14 +151,11 @@
                                                     </div>
                                                     <div class="col-12 mb-3 py-2">
                                                         <div class="uploader">
-                                                            <input id="file-upload" type="file" name="fileUpload"
-                                                                accept="image/*" />
+                                                            <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
                                                             <label for="file-upload" id="file-drag">
-                                                                <img id="file-image" src="#" alt="Preview"
-                                                                    class="hidden">
+                                                                <img id="file-image" src="#" alt="Preview" class="hidden">
                                                                 <div id="start">
-                                                                    <i class="fal fa-cloud-upload-alt"
-                                                                        aria-hidden="true"></i>
+                                                                    <i class="fal fa-cloud-upload-alt" aria-hidden="true"></i>
                                                                     <div class="fw-bold">Upload a File</div>
                                                                     <div>Drag and drop Files here</div>
                                                                 </div>
@@ -192,13 +164,9 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <div class="form-group-label">Status<span
-                                                                    class="required-field-star">*</span></div>
-                                                            <ng-select class="ng-select-custom" [clearable]="false"
-                                                                [(ngModel)]="SelectOption" name="SelectOption1"
-                                                                placeholder="Select Status">
-                                                                <ng-option *ngFor="let BT of SelectOption1"
-                                                                    [value]="BT.value">{{BT.label}}</ng-option>
+                                                            <div class="form-group-label">Status<span class="required-field-star">*</span></div>
+                                                            <ng-select class="ng-select-custom" [clearable]="false" [(ngModel)]="SelectOption" name="SelectOption1" placeholder="Select Status">
+                                                                <ng-option *ngFor="let BT of SelectOption1" [value]="BT.value">{{BT.label}}</ng-option>
                                                             </ng-select>
                                                         </div>
                                                     </div>
@@ -214,12 +182,11 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row position-sticky bottom-0">
-    <div class="col-12 text-end">
-        <div class="bg-white p-2 border-top rounded">
-            <button type="button" class="btn btn-primary px-4 btn-xl">Save Changes</button>
+    <div class="col-12 bottom-sticky-button-wrap">
+        <div class="bottom-sticky-button-inner">
+            <div class="text-end">
+                <button type="button" class="btn btn-primary px-4">Save Changes</button>
+            </div>
         </div>
     </div>
 </div>

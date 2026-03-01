@@ -227,15 +227,17 @@
             </div>
         </div>
 
-        <div class="col-12 my-3">
-            <div class="text-end">
-                <button type="button" class="btn btn-light me-2" (click)="router.navigate(['/services/service-list'])">
-                    Cancel
-                </button>
-                <button type="submit" class="btn btn-primary" [disabled]="loading || !serviceForm.valid">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-                    {{ isEditMode ? 'Update Service' : 'Create Service' }}
-                </button>
+        <div class="col-12 bottom-sticky-button-wrap">
+            <div class="bottom-sticky-button-inner">
+                <div class="text-end">
+                    <button type="button" class="btn btn-light me-2" (click)="router.navigate(['/services/service-list'])">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary" [disabled]="loading || !serviceForm.valid">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                        {{ isEditMode ? 'Update Service' : 'Create Service' }}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
