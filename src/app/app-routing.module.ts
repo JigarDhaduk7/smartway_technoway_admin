@@ -60,6 +60,14 @@ const routes: Routes = [
         loadChildren: () => import('./_pages/blogs/blog-comment-list/blog-comment-list.module').then(m => m.BlogCommentListModule) 
       },
       { 
+        path: 'projects/project-list', 
+        loadChildren: () => import('./_pages/projects/project-list/project-list.module').then(m => m.ProjectListModule) 
+      },
+      {
+        path: 'projects/add-project', 
+        loadChildren: () => import('./_pages/projects/add-project/add-project.module').then(m => m.AddProjectModule) 
+      },
+      { 
         path: 'services/service-list', 
         loadChildren: () => import('./_pages/services/service-list/service-list.module').then(m => m.ServiceListModule) 
       },

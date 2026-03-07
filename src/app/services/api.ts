@@ -172,6 +172,27 @@ export interface BlogFilter {
   isPublished?: boolean;
 }
 
+export interface Project {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  image: string;
+  isPublished: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProjectResponse {
+  success: boolean;
+  data: Project[];
+}
+
+export interface ProjectFilter {
+  title?: string;
+  isPublished?: boolean;
+}
+
 export interface Service {
   _id: string;
   title: string;
@@ -503,6 +524,63 @@ export class LeaderService {
 
 
 
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProjectService {
+  private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
+
+  getProjects(filter?: ProjectFilter): Observable<ProjectResponse> {
+    return this.http.get<ProjectResponse>(`${this.apiUrl}/projects`).pipe(
+      map((response: ProjectResponse) => {
+        if (!filter || (!filter.title && filter.isPublished === undefined)) {
+          return response;
+        }
+
+        const filteredData = response.data.filter(project => {
+          const titleMatch = !filter.title ||
+            project.title.toLowerCase().includes(filter.title.toLowerCase());
+          const publishedMatch = filter.isPublished === undefined || project.isPublished === filter.isPublished;
+          return titleMatch && publishedMatch;
+        });
+
+        return { ...response, data: filteredData };
+      })
+    );
+  }
+
+  getProjectById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/projects/id/${id}`);
+  }
+
+  getProjectBySlug(slug: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/projects/${slug}`);
+  }
+
+  createProject(projectData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/projects/create`, projectData);
+  }
+
+  updateProject(id: string, projectData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/projects/update/${id}`, projectData);
+  }
+
+  deleteProject(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/projects/delete/${id}`);
+  }
+
+  generateSlug(title: string): string {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9 -]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
+  }
 }
 
 @Injectable({
