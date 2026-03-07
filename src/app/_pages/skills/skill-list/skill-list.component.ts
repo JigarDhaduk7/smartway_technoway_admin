@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SkillService, Skill, SkillFilter } from '../../../services/api';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-skill-list',
   templateUrl: './skill-list.component.html',
@@ -14,6 +16,9 @@ export class SkillListComponent implements OnInit {
   skillToDelete: Skill | null = null;
   toastMessage: string = '';
   toastType: 'success' | 'error' | '' = '';
+  skill: Partial<Skill> = { title: '', status: true };
+  isEditMode = false;
+  selectedFile: File | null = null;
 
   get isFilterApplied(): boolean {
     return !!(this.filter.title || this.filter.status !== undefined);
@@ -61,11 +66,72 @@ export class SkillListComponent implements OnInit {
   }
 
   addNewSkill(): void {
-    this.router.navigate(['/skills/add-skill']);
+    this.isEditMode = false;
+    this.skill = { title: '', status: true };
+    this.selectedFile = null;
   }
 
   editSkill(skill: Skill): void {
-    this.router.navigate(['/skills/add-skill', skill._id]);
+    this.isEditMode = true;
+    this.skill = { ...skill };
+    this.selectedFile = null;
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  saveSkill(): void {
+    this.loading = true;
+    const formData = new FormData();
+    formData.append('title', this.skill.title || '');
+    formData.append('status', this.skill.status?.toString() || 'true');
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
+
+    if (this.isEditMode) {
+      this.skillService.updateSkill(this.skill._id!, formData).subscribe({
+        next: () => {
+          this.showToast('Skill updated successfully', 'success');
+          this.closeModal();
+          this.loadSkills();
+          this.loading = false;
+        },
+        error: () => {
+          this.showToast('Error updating skill', 'error');
+          this.loading = false;
+        }
+      });
+    } else {
+      this.skillService.createSkill(formData).subscribe({
+        next: () => {
+          this.showToast('Skill created successfully', 'success');
+          this.closeModal();
+          this.loadSkills();
+          this.loading = false;
+        },
+        error: () => {
+          this.showToast('Error creating skill', 'error');
+          this.loading = false;
+        }
+      });
+    }
+  }
+
+  resetForm(): void {
+    this.skill = { title: '', status: true };
+    this.selectedFile = null;
+    this.isEditMode = false;
+  }
+
+  closeModal(): void {
+    const modalElement = document.getElementById('AddSkillModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    if (modal) {
+      modal.hide();
+    }
+    this.resetForm();
   }
 
   deleteSkill(skill: Skill): void {

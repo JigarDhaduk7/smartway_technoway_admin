@@ -5,7 +5,7 @@
     <div class="col-auto text-end">
         <div class="nav-header-action">
             <div class="nav-head-item">
-                <button type="button" class="btn btn-primary" (click)="addNewSkill()">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddSkillModal" (click)="addNewSkill()">
                     <i class="icon-dc-plus btn-icon-left"></i> Add Skill
                 </button>
             </div>
@@ -43,7 +43,7 @@
                             <td class="first-fixed-col">
                                 <ul class="actions-wrap actions-style-1">
                                     <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32" (click)="editSkill(skill)">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32" data-bs-toggle="modal" data-bs-target="#AddSkillModal" (click)="editSkill(skill)">
                                             <i class="icon-dc-edit"></i>
                                         </button>
                                     </li>
@@ -82,6 +82,47 @@
         <div class="row align-items-center">
             <div class="col-md-12 col-lg-4">
                 <div class="text-center text-lg-start py-3">Showing {{ skills.length }} Entries</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal fade" id="AddSkillModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ isEditMode ? 'Edit Skill' : 'Add Skill' }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-group-label">Skill Title *</label>
+                    <input type="text" class="form-control" [(ngModel)]="skill.title" placeholder="Enter skill title">
+                </div>
+                <div class="form-group">
+                    <label class="form-group-label">Status *</label>
+                    <select class="form-control" [(ngModel)]="skill.status">
+                        <option [value]="true">Active</option>
+                        <option [value]="false">Inactive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-group-label">Skill Image *</label>
+                    <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+                </div>
+                <div class="form-group mb-0" *ngIf="isEditMode && skill.image">
+                    <label class="form-group-label">Current Image</label>
+                    <div class="img-uploaded-preview-block">
+                        <img [src]="skill.image" class="img-fluid" alt="Current Skill Image">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal" (click)="resetForm()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="saveSkill()">
+                    {{ isEditMode ? 'Update' : 'Add' }}
+                </button>
             </div>
         </div>
     </div>
