@@ -599,3 +599,20 @@ export class AuthService {
     return this.http.put(`${this.apiUrl}/auth/profile`, data);
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class JobApplicationService {
+  private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
+
+  getApplications(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/job/applications`);
+  }
+
+  deleteApplication(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/job/applications/${id}`);
+  }
+}
