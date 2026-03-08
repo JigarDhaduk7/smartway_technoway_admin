@@ -28,344 +28,37 @@
                             <th>Phone Number</th>
                             <th>Message</th>
                             <th>Enquiry Date</th>
+                            <th width="80">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let app of applications">
                             <td class="first-fixed-col">
                                 <ul class="actions-wrap actions-style-1">
                                     <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
+                                        <button type="button" class="btn btn-outline-primary action-btn-32" *ngIf="app.resume">
                                             <i class="icon-dc-file-pdf"></i>
                                         </button>
                                     </li>
                                 </ul>
                             </td>
-                            <td>Aatif Jariwala</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Product Engineer</td>
-                            <td>1 Year</td>
-                            <td>10,000</td>
-                            <td>+91 8456295936</td>
+                            <td>{{app.name}}</td>
+                            <td>{{app.email}}</td>
+                            <td>{{app.jobTitle}}</td>
+                            <td>{{app.experience}}</td>
+                            <td>{{app.currentCTC}}</td>
+                            <td>{{app.phone}}</td>
                             <td>
                                 <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
+                                    {{app.message}}
                                 </div>
                             </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Neha Rathod</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Business Analyst</td>
-                            <td>1 Year</td>
-                            <td>30,000</td>
-                            <td>+91 8456295936</td>
+                            <td>{{app.createdAt | date:'dd MMMM yyyy hh:mm:ss a'}}</td>
                             <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
+                                <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteApplication(app._id)">
+                                    <i class="icon-dc-delete"></i>
+                                </button>
                             </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Aatif Jariwala</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Product Engineer</td>
-                            <td>1 Year</td>
-                            <td>10,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Neha Rathod</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Business Analyst</td>
-                            <td>1 Year</td>
-                            <td>30,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Aatif Jariwala</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Product Engineer</td>
-                            <td>1 Year</td>
-                            <td>10,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Neha Rathod</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Business Analyst</td>
-                            <td>1 Year</td>
-                            <td>30,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Aatif Jariwala</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Product Engineer</td>
-                            <td>1 Year</td>
-                            <td>10,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Neha Rathod</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Business Analyst</td>
-                            <td>1 Year</td>
-                            <td>30,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Aatif Jariwala</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Product Engineer</td>
-                            <td>1 Year</td>
-                            <td>10,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Neha Rathod</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Business Analyst</td>
-                            <td>1 Year</td>
-                            <td>30,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Aatif Jariwala</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Product Engineer</td>
-                            <td>1 Year</td>
-                            <td>10,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Neha Rathod</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Business Analyst</td>
-                            <td>1 Year</td>
-                            <td>30,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Aatif Jariwala</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Product Engineer</td>
-                            <td>1 Year</td>
-                            <td>10,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
-                        </tr>
-                        <tr>
-                            <td class="first-fixed-col">
-                                <ul class="actions-wrap actions-style-1">
-                                    <li class="actions-item">
-                                        <button type="button" class="btn btn-outline-primary action-btn-32">
-                                            <i class="icon-dc-file-pdf"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>Neha Rathod</td>
-                            <td>geoffreyrush@gmail.com</td>
-                            <td>Business Analyst</td>
-                            <td>1 Year</td>
-                            <td>30,000</td>
-                            <td>+91 8456295936</td>
-                            <td>
-                                <div class="text-wrap">
-                                    Lorem Ipsum is simply dummy industry...<a href="" class="btn btn-link">Read
-                                        More</a>
-                                </div>
-                            </td>
-                            <td>28 March 2025 04:10:24 PM</td>
                         </tr>
                     </tbody>
                 </table>
