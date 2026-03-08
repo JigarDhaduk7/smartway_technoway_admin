@@ -87,6 +87,11 @@ textarea {
     }
 }
 
+select {
+    appearance: auto !important;
+    padding-left: 8px !important;
+}
+
 .form-control {
     height: 40px;
     font-size: var(--font-size-14);
@@ -102,6 +107,8 @@ textarea {
     &::file-selector-button {
         display: none;
     }
+
+
 
     &:hover {
         border-color: var(--form-control-border-hover);

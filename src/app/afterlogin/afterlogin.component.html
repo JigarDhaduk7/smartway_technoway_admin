@@ -20,7 +20,7 @@
                             <h2 class="accordion-header">
                                 <a [routerLink]="['/dashboard']" class="accordion-btn-link">
                                     <div class="sidebar-menu-icon">
-                                        <i class="icon-dc-dashboard"></i>
+                                        <i class="far fa-th-large"></i>
                                     </div>
                                     <div class="sidebar-menu-name">Dashboard</div>
                                 </a>
@@ -28,39 +28,9 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <a [routerLink]="['/review-list']" class="accordion-btn-link">
-                                    <div class="sidebar-menu-icon">
-                                        <i class="icon-dc-reviews"></i>
-                                    </div>
-                                    <div class="sidebar-menu-name">Reviews</div>
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <a [routerLink]="['/blogs/blog-list']" class="accordion-btn-link">
-                                    <div class="sidebar-menu-icon">
-                                        <i class="icon-dc-total-blogs"></i>
-                                    </div>
-                                    <div class="sidebar-menu-name">Blogs</div>
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <a [routerLink]="['/projects/project-list']" class="accordion-btn-link">
-                                    <div class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-folder-open"></i>
-                                    </div>
-                                    <div class="sidebar-menu-name">Projects</div>
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
                                 <a [routerLink]="['/services/service-list']" class="accordion-btn-link">
                                     <div class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-gear"></i>
+                                        <i class="far fa-gear"></i>
                                     </div>
                                     <div class="sidebar-menu-name">Services</div>
                                 </a>
@@ -70,7 +40,7 @@
                             <h2 class="accordion-header">
                                 <a [routerLink]="['/skills/skill-list']" class="accordion-btn-link">
                                     <div class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-code"></i>
+                                        <i class="far fa-code"></i>
                                     </div>
                                     <div class="sidebar-menu-name">Skills</div>
                                 </a>
@@ -78,8 +48,50 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
+                                <a [routerLink]="['/visionary-leadership']" class="accordion-btn-link">
+                                    <div class="sidebar-menu-icon">
+                                        <i class="far fa-lightbulb"></i>
+                                    </div>
+                                    <div class="sidebar-menu-name">Visionary Leadership</div>
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <a [routerLink]="['/review-list']" class="accordion-btn-link">
+                                    <div class="sidebar-menu-icon">
+                                        <i class="far fa-comments"></i>
+                                    </div>
+                                    <div class="sidebar-menu-name">Reviews</div>
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <a [routerLink]="['/projects/project-list']" class="accordion-btn-link">
+                                    <div class="sidebar-menu-icon">
+                                        <i class="far fa-folder-open"></i>
+                                    </div>
+                                    <div class="sidebar-menu-name">Projects</div>
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <a [routerLink]="['/blogs/blog-list']" class="accordion-btn-link">
+                                    <div class="sidebar-menu-icon">
+                                        <i class="far fa-file-alt"></i>
+                                    </div>
+                                    <div class="sidebar-menu-name">Blogs</div>
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
                                 <a href="javascript:void(0)" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#CareerCollapse1" aria-expanded="false" aria-controls="CareerCollapse1">
-                                    <div class="sidebar-menu-icon"><i class="icon-dc-career"></i></div>
+                                    <div class="sidebar-menu-icon">
+                                        <i class="far fa-briefcase"></i>
+                                    </div>
                                     <div class="sidebar-menu-name">Career</div>
                                 </a>
                             </h2>
@@ -102,23 +114,12 @@
                             <h2 class="accordion-header">
                                 <a [routerLink]="['/contact/user-enquiry-list']" class="accordion-btn-link">
                                     <div class="sidebar-menu-icon">
-                                        <i class="icon-dc-total-blogs"></i>
+                                        <i class="fal fa-file-edit"></i>
                                     </div>
                                     <div class="sidebar-menu-name">User Enquiry</div>
                                 </a>
                             </h2>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <a [routerLink]="['/visionary-leadership']" class="accordion-btn-link">
-                                    <div class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-lightbulb"></i>
-                                    </div>
-                                    <div class="sidebar-menu-name">Visionary Leadership</div>
-                                </a>
-                            </h2>
-                        </div>
-
                     </div>
                 </div>
                 <div class="">
@@ -276,7 +277,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer justify-content-end pt-0">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" (click)="updateProfile()">Save</button>
             </div>
